@@ -1,9 +1,17 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Provider from './context/ContextForm';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <BrowserRouter>
+      <Provider>
+        <Switch>
+          <Route exact path="/" component={ Home } />
+        </Switch>
+      </Provider>
+  </BrowserRouter>
   );
 }
 

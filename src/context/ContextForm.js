@@ -3,11 +3,14 @@ import React, { createContext, useState } from 'react';
 export const Context = createContext();
 
 function Provider({ children }) {
-  const [task, setTask] = useState([]);
+  const [todo, setTodo] = useState('');
+  const [status, setStatus] = useState('');
 
   const object = {
-    task,
-    setTask,
+    todo,
+    setTodo,
+    status,
+    setStatus,
   };
 
   return (

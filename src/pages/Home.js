@@ -5,6 +5,7 @@ import Form from '../components/Form';
 
 function Home() {
   const [tasks, setTasks] = useState([]);
+  const { refresh } = useContext(Context);
 
   useEffect(() => {
     const request = async() => {
@@ -12,7 +13,7 @@ function Home() {
       setTasks(result);
     };
     request();
-  }, []);
+  }, [refresh]);
 
   return (
     <div>

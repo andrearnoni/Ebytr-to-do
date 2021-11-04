@@ -3,16 +3,17 @@ import axios from 'axios';
 import { Context } from '../context/ContextForm';
 
 function Form() {
-  const { todo, setTodo, status, setStatus } = useContext(Context);
+  const { todo, setTodo, status, setStatus, refresh, setRefresh } = useContext(Context);
 
   async function createTodo() {
-      try {
-        const result = await axios.post('https://ebytr-original.herokuapp.com/todo', { todo, status });
-        return result.data;
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      const result = await axios.post('https://ebytr-original.herokuapp.com/todo', { todo, status });
+      setRefresh(!refresh);
+      return result.data;
+    } catch (error) {
+      console.log(error);
     }
+  }
 
   const handleChange = (e) => {
     if (e.target.name === 'task') {

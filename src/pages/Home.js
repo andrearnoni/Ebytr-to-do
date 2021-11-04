@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../context/ContextForm';
-import { getAllTodo } from '../services/api';
+import { getAllTodo, deleteTodo } from '../services/api';
 import Form from '../components/Form';
 
 function Home() {
   const [tasks, setTasks] = useState([]);
-  const { refresh } = useContext(Context);
+  const { refresh, setRefresh } = useContext(Context);
 
   useEffect(() => {
     const request = async() => {
@@ -23,11 +23,17 @@ function Home() {
       </div>
       <div>
         <ul>
-        {tasks.map((task, index) => (
+        {tasks && tasks.map((task, index) => (
           <div key={index}>
             <ul>
               <li>{task.todo}</li>
-              <li>{task.status}</li>
+              <div>
+                <li>{task.status}</li>
+                <button 
+                  onClick={() => deleteTodo(setRefresh, refresh, task._id)}
+                >Excluir
+                </button>
+              </div>
             </ul>
           </div>
          ))}

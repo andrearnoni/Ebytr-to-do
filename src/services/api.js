@@ -8,3 +8,23 @@ export async function getAllTodo() {
     console.log(error);
   }
 }
+
+export async function createTodo(setRefresh, refresh, todo, status) {
+  try {
+    const result = await axios.post('https://ebytr-original.herokuapp.com/todo', { todo, status });
+    setRefresh(!refresh);
+    return result.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteTodo(setRefresh, refresh, id) {
+  try {
+    const result = await axios.delete(`https://ebytr-original.herokuapp.com/todo/${id}`);
+    setRefresh(!refresh);
+    return result.data;
+  } catch (error) {
+    console.log(error);
+  }
+}

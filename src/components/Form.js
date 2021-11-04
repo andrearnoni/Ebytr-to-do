@@ -1,19 +1,10 @@
 import React, { useContext } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { Context } from '../context/ContextForm';
+import { createTodo } from '../services/api';
 
 function Form() {
   const { todo, setTodo, status, setStatus, refresh, setRefresh } = useContext(Context);
-
-  async function createTodo() {
-    try {
-      const result = await axios.post('https://ebytr-original.herokuapp.com/todo', { todo, status });
-      setRefresh(!refresh);
-      return result.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   const handleChange = (e) => {
     if (e.target.name === 'task') {
@@ -35,7 +26,11 @@ function Form() {
         <input type="radio" name="status" value="Em andamento" onChange={ handleChange } /> Em andamento
         <label />
         <input type="radio" name="status" value="Pronto" onChange={ handleChange } /> Pronto
-        <button type="button" onClick={ () => createTodo() }>Adicionar tarefa</button>
+        <button 
+          type="button" 
+          onClick={ () => createTodo(setRefresh, refresh, todo, status) }
+        >Adicionar tarefa
+        </button>
       </form>
     </div>
   )

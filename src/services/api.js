@@ -19,6 +19,15 @@ export async function createTodo(setRefresh, refresh, todo, status) {
   }
 }
 
+export async function updateTodo(id, todo, status) {
+  try {
+    const result = await axios.put(`https://ebytr-original.herokuapp.com/todo/${id}`, { todo, status });
+    return result.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function deleteTodo(setRefresh, refresh, id) {
   try {
     const result = await axios.delete(`https://ebytr-original.herokuapp.com/todo/${id}`);

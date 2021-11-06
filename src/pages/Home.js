@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Context } from '../context/ContextForm';
 import { getAllTodo, deleteTodo } from '../services/api';
 import Form from '../components/Form';
+import DropDown from '../components/DropDown';
+import UpdateModal from '../components/UpdateModal';
 
 function Home() {
-  const [tasks, setTasks] = useState([]);
-  const { refresh, setRefresh } = useContext(Context);
+  const { tasks, setTasks, refresh, setRefresh } = useContext(Context);
 
   useEffect(() => {
     const request = async() => {
@@ -13,28 +14,29 @@ function Home() {
       setTasks(result);
     };
     request();
-  }, [refresh]);
+  }, [refresh, setTasks]);
 
   return (
     <div>
       <div>
         <h1>Ebytr - Sistema de registro de tarefas</h1>
         <Form />
+        <DropDown />
       </div>
       <div>
         <ul>
         {tasks && tasks.map((task, index) => (
           <div key={index}>
-            <ul>
-              <li>{task.todo}</li>
-              <div>
-                <li>{task.status}</li>
-                <button 
-                  onClick={() => deleteTodo(setRefresh, refresh, task._id)}
-                >Excluir
-                </button>
-              </div>
-            </ul>
+            <p>TAREFA: {task.todo}</p>
+            <p>INSERIDO EM: {task.createdAt}</p>
+            <div>
+              <p>STATUS: {task.status}</p>
+              <UpdateModal task={task}/>
+              <button 
+                onClick={() => deleteTodo(setRefresh, refresh, task._id)}
+              >Excluir
+              </button>
+            </div>
           </div>
          ))}
         </ul>

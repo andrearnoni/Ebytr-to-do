@@ -31,7 +31,6 @@ function DropDown() {
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             Ordenar por
           </Dropdown.Toggle>
-
           <Dropdown.Menu>
             <Dropdown.Item onClick={ () => orderAll() }>Ordem Alfabética</Dropdown.Item>
             <Dropdown.Item >Data de inserção</Dropdown.Item>

@@ -1,0 +1,16 @@
+.modal-primary__button {
+  width: 100%;
+}
+
+.modal-input {
+  width: 100%;
+}
+
+.modal-radio__title {
+  margin-top: 15px;
+}
+
+.modal-radio__inputs {
+  display: flex;
+  justify-content: space-evenly;
+}

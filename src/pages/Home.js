@@ -1,46 +1,18 @@
-import React, { useContext, useEffect } from 'react';
-import { Context } from '../context/ContextForm';
-import { getAllTodo, deleteTodo } from '../services/api';
+import React from 'react';
 import Form from '../components/Form';
-import DropDown from '../components/DropDown';
-import UpdateModal from '../components/UpdateModal';
+// import DropDown from '../components/DropDown';
+import '../styles/Home.css';
+import Tasks from '../components/Tasks';
 
 function Home() {
-  const { tasks, setTasks, refresh, setRefresh } = useContext(Context);
-
-  useEffect(() => {
-    const request = async() => {
-      const result = await getAllTodo();
-      setTasks(result);
-    };
-    request();
-  }, [refresh, setTasks]);
-
   return (
     <div>
+      <h1 className="home-title">Ebytr - Sistema de registro de tarefas</h1>
       <div>
-        <h1>Ebytr - Sistema de registro de tarefas</h1>
         <Form />
-        <DropDown />
+        {/* <DropDown /> */}
       </div>
-      <div>
-        <ul>
-        {tasks && tasks.map((task, index) => (
-          <div key={index}>
-            <p>TAREFA: {task.todo}</p>
-            <p>INSERIDO EM: {task.createdAt}</p>
-            <div>
-              <p>STATUS: {task.status}</p>
-              <UpdateModal task={task}/>
-              <button 
-                onClick={() => deleteTodo(setRefresh, refresh, task._id)}
-              >Excluir
-              </button>
-            </div>
-          </div>
-         ))}
-        </ul>
-      </div>
+      <Tasks />
     </div>
   )
 }

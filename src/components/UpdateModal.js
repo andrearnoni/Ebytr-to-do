@@ -5,14 +5,14 @@ import { updateTodo } from '../services/api';
 
 function UpdateModal({task}) {
   const [show, setShow] = useState(false);
-  const { todo, setTodo, status, setStatus } = useContext(Context);
+  const { todo, setTodo, status, setStatus, refresh, setRefresh } = useContext(Context);
 
 
   const handleClose = () => {
     setShow(false);
     setTimeout(() => {
-      window.location.reload();
-    }, 50);
+      setRefresh(!refresh);
+    }, 250);
   }
 
   const handleShow = () => setShow(true);

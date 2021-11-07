@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Context } from '../context/ContextForm';
 import { getAllTodo, deleteTodo } from '../services/api';
+import { Button } from 'react-bootstrap';
 import Form from '../components/Form';
 import DropDown from '../components/DropDown';
 import UpdateModal from '../components/UpdateModal';
@@ -32,10 +33,11 @@ function Home() {
             <div>
               <p>STATUS: {task.status}</p>
               <UpdateModal task={task}/>
-              <button 
+              <Button
+                variant="danger" 
                 onClick={() => deleteTodo(setRefresh, refresh, task._id)}
-              >Excluir
-              </button>
+              >Excluir Tarefa
+              </Button>
             </div>
           </div>
          ))}

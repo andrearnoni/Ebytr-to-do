@@ -1,0 +1,42 @@
+.form__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.form-input {
+  padding: 5px;
+  width: 100%;
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+.form-radios {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+
+.form-status {
+  margin-right: 3px;
+}
+
+.form-status__title {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.form-button {
+  border-radius: 5px;
+  padding: 5px;
+  width: 100%;
+}
+
+.form-button:focus {
+  outline: none;
+}

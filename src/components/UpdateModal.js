@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Context } from '../context/ContextForm';
 import { Modal, Button } from 'react-bootstrap';
 import { updateTodo } from '../services/api';
+import '../styles/UpdateModal.css';
 
 function UpdateModal({task}) {
   const [show, setShow] = useState(false);
@@ -12,7 +13,7 @@ function UpdateModal({task}) {
     setShow(false);
     setTimeout(() => {
       setRefresh(!refresh);
-    }, 250);
+    }, 350);
   }
 
   const handleShow = () => setShow(true);
@@ -27,7 +28,7 @@ function UpdateModal({task}) {
 
   return (
     <div>
-       <Button variant="primary" onClick={handleShow}>
+       <Button variant="primary" className="modal-primary__button" onClick={handleShow}>
         Editar Tarefa
       </Button>
 
@@ -37,19 +38,23 @@ function UpdateModal({task}) {
         </Modal.Header>
         <Modal.Body>
         <form>
-          <label />
-          <input type="text" autoComplete="off" name="task" onChange={ handleChange } />
-          <h3>Selecione o status da tarefa</h3>
-          <label />
-          <input type="radio" name="status" value="Pendente" onChange={ handleChange } /> Pendente
-          <label />
-          <input type="radio" name="status" value="Em andamento" onChange={ handleChange } /> Em andamento
-          <label />
-          <input type="radio" name="status" value="Pronto" onChange={ handleChange } /> Pronto
+          <input type="text" autoComplete="off" name="task" className="modal-input" onChange={ handleChange } />
+          <h5 className="modal-radio__title">Selecione o status da tarefa</h5>
+          <div className="modal-radio__inputs">
+            <label>
+              <input type="radio" name="status" value="Pendente" onChange={ handleChange } /> Pendente
+            </label>
+            <label>
+              <input type="radio" name="status" value="Em andamento" onChange={ handleChange } /> Em andamento
+            </label>
+            <label>
+              <input type="radio" name="status" value="Pronto" onChange={ handleChange } /> Pronto
+            </label>
+          </div>
          </form> 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="danger" onClick={handleClose}>
             Fechar
           </Button>
           <Button variant="primary" onClick={ () => { updateTodo(task._id, todo, status); handleClose() } }>
